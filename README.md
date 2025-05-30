@@ -1,39 +1,56 @@
 # warp-bubble-parameter-constraints
 
-This repository provides:
+This repository provides a comprehensive analysis of warp bubble parameter constraints using both symbolic and numerical methods.
+
+## Features
 
 1. **analyze_constraints.py**  
    A Python script that:
-   - Fetches the LaTeX definition of the exotic‐matter energy density \(\widetilde T^{00}(r,t)\) from the previous repo.
-   - Converts it into a SymPy expression.
-   - Computes the total negative energy
-     \[
-       E_{\rm neg}
-       = \int_0^R \!\!\int_0^\pi\!\!\int_0^{2\pi}
-         \widetilde T^{00}(r)\,r^2\sin\theta\,
-         d\phi\,d\theta\,dr
-     \]
-   - Solves \(\frac{\partial E_{\rm neg}}{\partial R}=0\) and \(\frac{\partial E_{\rm neg}}{\partial \sigma}=0\).
-   - Derives bounds on the amplitude \(A\) to ensure finiteness of \(E_{\rm neg}\).
-   - Exports the results as LaTeX.
+   - Models a simplified warp bubble with Gaussian profile
+   - Computes the total negative energy analytically using SymPy
+   - Derives extremum conditions for bubble radius (R) and width (σ)
+   - Performs nondimensional analysis using x = R/σ
+   - Conducts numerical root-finding for transcendental equations
+   - Provides asymptotic analysis for thin-wall and thick-wall limits
+   - Exports comprehensive results as LaTeX
 
 2. **parameter_constraints.tex**  
    A ready‐to‐compile LaTeX document that presents:
-   - The analytic form of \(E_{\rm neg}(R,\sigma,A)\).
-   - Extremum conditions for \(R\) and \(\sigma\).
-   - Inequalities on \(A\) enforcing finite total negative energy.
+   - The analytic form of the warp bubble model
+   - Total negative energy E_neg(R,σ,A) with error functions
+   - Extremum conditions and their nondimensional form
+   - Asymptotic analysis for different parameter regimes
+   - Physical interpretation of the absence of critical points
+   - Numerical approaches for practical optimization
+
+## Key Findings
+
+The analysis reveals that this simplified Gaussian warp bubble model has **no analytical critical points** because the extremum conditions reduce to transcendental equations of the form:
+
+```
+F(x) = exp(-2x²) + exp(-8x²)/2 = 0
+```
+
+where x = R/σ. Since both exponential terms are strictly positive, F(x) > 0 for all x, indicating:
+
+- No natural "optimal" bubble size exists in this model
+- Energy decreases monotonically with increasing R or σ  
+- Physical constraints must determine practical parameters
+- More sophisticated models are needed for realistic optimization
 
 ---
 
 ## Prerequisites
 
 - Python 3.7+
-- [SymPy](https://www.sympy.org/)  
-- [requests](https://pypi.org/project/requests/)
+- [SymPy](https://www.sympy.org/) - Symbolic mathematics  
+- [NumPy](https://numpy.org/) - Numerical computing
+- [SciPy](https://scipy.org/) - Scientific computing (optional, for advanced numerical methods)
+- [mpmath](https://mpmath.org/) - Arbitrary precision arithmetic (optional)
 
 Install dependencies via:
 ```bash
-pip install sympy requests
+pip install sympy numpy scipy mpmath
 ```
 
 ---
@@ -55,12 +72,11 @@ python analyze_constraints.py
 
     This will:
     
-    -   Download the exotic‐matter density LaTeX from  
-        `https://raw.githubusercontent.com/arcticoder/warp-bubble-exotic-matter-density/refs/heads/main/exotic_matter_density.tex`
-        
-    -   Compute and print out the constraints.
-        
-    -   Write `parameter_constraints.tex` in the project root.
+    -   Perform symbolic analysis of the warp bubble model
+    -   Compute total negative energy and extremum conditions
+    -   Conduct nondimensional analysis with x = R/σ
+    -   Perform numerical root-finding and asymptotic analysis
+    -   Generate comprehensive LaTeX documentation
         
 3.  **Compile the LaTeX**
     
@@ -68,15 +84,48 @@ python analyze_constraints.py
 pdflatex parameter_constraints.tex
 ```
     
-    to produce a PDF report of your results.
+    to produce a PDF report with complete analysis results.
+
+## Numerical Methods Implemented
+
+The script demonstrates several approaches for handling transcendental equations:
+
+1. **Nondimensionalization** - Reduces the problem to a single variable x = R/σ
+2. **Numerical root-finding** - Uses robust solvers for transcendental equations  
+3. **Asymptotic expansions** - Provides approximate solutions for limiting cases
+4. **Parameter scanning** - Grid-based optimization for practical applications
+5. **Physical interpretation** - Analysis of why no critical points exist
     
 
 ---
 
 ## Files
 
--   **analyze\_constraints.py**  
-    Python script performing the symbolic computations and exporting LaTeX.
+-   **analyze_constraints.py**  
+    Enhanced Python script performing symbolic computations, numerical analysis, and LaTeX export.
     
--   **parameter\_constraints.tex**  
-    LaTeX document detailing the results.
+-   **parameter_constraints.tex**  
+    Comprehensive LaTeX document with complete analysis results and physical interpretation.
+
+-   **README.md**  
+    This documentation file.
+
+## Example Output
+
+The analysis produces output like:
+
+```
+Transcendental equation F(x) = exp(-2x²) + exp(-8x²)/2 = 0
+where x = R/σ is the dimensionless bubble width ratio
+
+Function values at test points:
+F(0.1) = 1.441757
+F(0.5) = 0.674198  
+F(1.0) = 0.135503
+F(2.0) = 0.000335
+
+Observation: F(x) > 0 for all x > 0 (both exponentials are positive)
+This means dE/dR ≠ 0 for any finite R, σ - no critical points exist!
+```
+
+This demonstrates the power of combining symbolic and numerical methods to understand the behavior of complex physical systems.

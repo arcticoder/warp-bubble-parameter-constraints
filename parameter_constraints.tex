@@ -1,6 +1,7 @@
 \\documentclass{article}
 \\usepackage{amsmath}
 \\usepackage{amsfonts}
+\\usepackage{amssymb}
 \\begin{document}
 
 \\section*{Warp Bubble Parameter Constraints Analysis}
@@ -37,15 +38,59 @@ The total negative energy within the warp bubble region is:
   \\Longrightarrow \\sigma = \text{No analytical solutions found}
 \\]
 
+\\subsection*{Nondimensional Analysis}
+
+Defining the dimensionless parameter $x = R/\\sigma$, the extremum condition 
+$\\partial E_{\\rm neg}/\\partial R = 0$ reduces to the transcendental equation:
+\\[
+  F(x) = e^{-2x^2} + \frac{1}{2}e^{-8x^2} = 0
+\\]
+
+Since both exponential terms are strictly positive for all $x > 0$, we have $F(x) > 0$ 
+for all real $x$. This indicates that \\textbf{no critical points exist} for this 
+simplified model.
+
+\\subsection*{Asymptotic Analysis}
+
+\\textbf{Thin-wall limit} ($\\sigma \\ll R$, i.e., $x \\gg 1$):
+\\[
+  \\text{erf}(x) \\approx 1 - \\frac{e^{-x^2}}{\\sqrt{\\pi} x}
+\\]
+
+\\textbf{Thick-wall limit} ($\\sigma \\gg R$, i.e., $x \\ll 1$):
+\\[
+  \\text{erf}(x) \\approx \\frac{2x}{\\sqrt{\\pi}}\\left(1 - \\frac{x^2}{3} + \\cdots\\right)
+\\]
+
 \\subsection*{Physical Constraints}
 For exotic matter generation and finite energy:
 \\[
   A > 0\ \text{ for exotic matter generation}
 \\]
 
+\\subsection*{Physical Interpretation}
+
+The absence of critical points in this simplified model suggests:
+\\begin{itemize}
+  \\item The energy $E_{\\rm neg}$ decreases monotonically with increasing $R$ or $\\sigma$
+  \\item No natural ``optimal'' bubble size exists
+  \\item Physical constraints (finite resources, stability requirements) must determine parameters
+  \\item More sophisticated models may include additional terms that create energy minima
+\\end{itemize}
+
+\\subsection*{Numerical Approaches}
+
+For practical parameter optimization, consider:
+\\begin{enumerate}
+  \\item \\textbf{Parameter scanning}: Grid search over $(R,\\sigma)$ space
+  \\item \\textbf{Constrained optimization}: Minimize $|E_{\\rm neg}|$ subject to physical bounds
+  \\item \\textbf{Multi-objective optimization}: Balance energy efficiency with stability constraints
+\\end{enumerate}
+
 \\subsection*{Notes}
 The extremum conditions for this model lead to transcendental equations involving error functions
-that cannot be solved analytically in general. Numerical methods would be required for specific
-parameter optimization.
+that cannot be solved analytically in general. The nondimensional analysis reveals that
+the simplified Gaussian model has no critical points, indicating the need for more 
+sophisticated warp bubble models that include additional physical effects.
 
 \\end{document}
