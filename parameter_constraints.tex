@@ -1,0 +1,51 @@
+\\documentclass{article}
+\\usepackage{amsmath}
+\\usepackage{amsfonts}
+\\begin{document}
+
+\\section*{Warp Bubble Parameter Constraints Analysis}
+
+\\subsection*{Model}
+We analyze a simplified warp bubble with Gaussian profile:
+\\[
+  f(r,t) = 1 + A e^{-\\frac{(r-R)^2}{\\sigma^2}} e^{-\\frac{t^2}{\\sigma^2}}
+\\]
+
+The corresponding energy density is:
+\\[
+  T^{00}(r,t) = -\\frac{A^2}{8\\pi r^2} e^{-\\frac{2(r-R)^2}{\\sigma^2}} e^{-\\frac{2t^2}{\\sigma^2}}
+\\]
+
+\\subsection*{Total Negative Energy}
+The total negative energy within the warp bubble region is:
+\\[
+  E_{\\rm neg}(R,\\sigma,A) = 2 \pi \left(- \frac{\sqrt{2} A^{2} \sigma \operatorname{erf}{\left(\frac{\sqrt{2} R}{\sigma} \right)}}{16 \sqrt{\pi}} - \frac{\sqrt{2} A^{2} \sigma \operatorname{erf}{\left(\frac{2 \sqrt{2} R}{\sigma} \right)}}{16 \sqrt{\pi}}\right)
+\\]
+
+\\subsection*{Extremum Conditions}
+\\[
+  \\frac{\\partial E_{\\rm neg}}{\\partial R} = 2 \pi \left(- \frac{A^{2} e^{- \frac{2 R^{2}}{\sigma^{2}}}}{4 \pi} - \frac{A^{2} e^{- \frac{8 R^{2}}{\sigma^{2}}}}{2 \pi}\right) = 0
+\\]
+\\[
+  \\Longrightarrow R = \text{No analytical solutions found}
+\\]
+
+\\[
+  \\frac{\\partial E_{\\rm neg}}{\\partial \\sigma} = 2 \pi \left(\frac{A^{2} R e^{- \frac{2 R^{2}}{\sigma^{2}}}}{4 \pi \sigma} + \frac{A^{2} R e^{- \frac{8 R^{2}}{\sigma^{2}}}}{2 \pi \sigma} - \frac{\sqrt{2} A^{2} \operatorname{erf}{\left(\frac{\sqrt{2} R}{\sigma} \right)}}{16 \sqrt{\pi}} - \frac{\sqrt{2} A^{2} \operatorname{erf}{\left(\frac{2 \sqrt{2} R}{\sigma} \right)}}{16 \sqrt{\pi}}\right) = 0
+\\]
+\\[
+  \\Longrightarrow \\sigma = \text{No analytical solutions found}
+\\]
+
+\\subsection*{Physical Constraints}
+For exotic matter generation and finite energy:
+\\[
+  A > 0\ \text{ for exotic matter generation}
+\\]
+
+\\subsection*{Notes}
+The extremum conditions for this model lead to transcendental equations involving error functions
+that cannot be solved analytically in general. Numerical methods would be required for specific
+parameter optimization.
+
+\\end{document}
